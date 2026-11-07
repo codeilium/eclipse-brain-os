@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/*
+ * Eclipse Brain OS — design tokens (CSS surface).
+ * Mirrors `src/design/tokens.ts`; keep the two in sync.
+ * Tailwind v4 generates utilities from these (bg-void, text-starlight,
+ * ease-cinematic, font-sans, …). Defaults are intentionally left intact.
+ */
+@theme {
+  --color-void: #04050a;
+  --color-abyss: #080b14;
+  --color-deep-space: #0c1322;
+  --color-nebula: #16233f;
+  --color-dusk: #2a2342;
+  --color-amethyst: #5b4b8a;
+  --color-corona: #d9a566;
+  --color-crescent: #f5ede0;
+  --color-starlight: #e6e8f0;
+  --color-haze: #9aa0b5;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-drift: cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: var(--color-starlight);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer components {
+  /*
+   * The app's scroll surfaces (PRD 30) — a thin, cool scrollbar instead of the
+   * default OS chrome. Scoped: applied to the catalog list, the center panel,
+   * and the notes body (any future panel opts in with this class). CSS only,
+   * no dependency. Modern Chromium + Firefox use the standard properties;
+   * the ::-webkit-* rules cover WebKit engines without them. Haze at low
+   * alpha — cool by construction (warm = earned, §7).
+   */
+  .app-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--color-haze) 25%, transparent)
+      transparent;
+  }
+  .app-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+  .app-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .app-scroll::-webkit-scrollbar-thumb {
+    background-color: color-mix(in srgb, var(--color-haze) 25%, transparent);
+    border-radius: 9999px;
+  }
+}
