@@ -57,7 +57,7 @@ git --version
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/eclipse-brain-os.git
+git clone https://github.com/YOUR_USERNAME/eclipse-brain-os.git](https://github.com/codeilium/eclipse-brain-os.git
 ```
 
 ### 2. Navigate to the project directory
